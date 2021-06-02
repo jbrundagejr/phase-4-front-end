@@ -6,18 +6,15 @@ import CreateAccount from './CreateAccount'
 import VinylPage from './VinylPage'
 import Profile from './Profile'
 import AddVinylForm from './AddVinylForm'
-// import {useState} from 'react'
 
 function App() {
   
 
   return (
     <div >
-
      <Header />
      <Switch>
       <Route exact path="/">
-      
         <Login />
         <CreateAccount />
       </Route>
@@ -32,7 +29,7 @@ function App() {
       </Route>
      </Switch>
     </div>
-  );
+  )
 }
 
 export default App;
