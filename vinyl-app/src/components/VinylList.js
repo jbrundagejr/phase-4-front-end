@@ -1,8 +1,8 @@
 import VinylCard from './VinylCard'
 
-function VinylList({vinylArr}){
+function VinylList({vinylArr, loggedInUser}){
   const vinylArray = vinylArr.map(vinylObj =>
-    <VinylCard key={vinylObj.id} vinyl={vinylObj} />)
+    <VinylCard key={vinylObj.id} vinyl={vinylObj} loggedInUser={loggedInUser}/>)
 
   return(
     <div>

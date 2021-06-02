@@ -1,14 +1,13 @@
 import {useState, useEffect} from 'react'
-import {Modal, Image, Input, Rating, Form, Button, Comment, Select} from 'semantic-ui-react'
+import {Modal, Image, Input, Rating, Form, Button, Comment, Icon} from 'semantic-ui-react'
 
-function VinylModal({id, tag}){
+function VinylModal({id, tag, loggedInUser}){
   const [vinyl, setVinyl] = useState(null)
   const [isLoaded, setIsLoaded] = useState(false)
   const [userTitle, setUserTitle] = useState("")
   const [userContent, setUserContent] = useState("")
   const [userRating, setUserRating] = useState("")
   const [open, setOpen] = useState(false)
-  const [userId, setUserId] = useState("All")
   const [reviews, setReviews] = useState([])
 
   useEffect(() => {
@@ -24,10 +23,22 @@ function VinylModal({id, tag}){
   if (!isLoaded) return <p>Loading...</p>
 
   const {band_name, album_title, image_url, year_released, in_production} = vinyl
-
-  // function idSelected(e) {
-  //   setUserId(e.target.value)
-  // }
+  
+  function handleDelete(id){
+    fetch(`http://localhost:3000/reviews/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Authorization": `Bearer ${localStorage.token}`,
+      }
+    })
+      .then(res => res.json())
+      .then((deletedReview) => {
+        const updatedReviewArray = reviews.filter(review =>
+          review.id !== deletedReview.id
+        )
+        setReviews(updatedReviewArray)
+      })
+  }
 
   const reviewArray = reviews.map(reviewObj => 
     <Comment key={reviewObj.id}>
@@ -36,8 +47,7 @@ function VinylModal({id, tag}){
         <Comment.Author>By: {reviewObj.user.name}</Comment.Author>
         <Comment.Text>{reviewObj.content}</Comment.Text>
         <Comment.Text>Rating: {reviewObj.rating}</Comment.Text>
-        {/* <Select value={userId} onChange={idSelected}>
-        </Select> */}
+        {loggedInUser.user === reviewObj.user_id ? <Icon name="trash alternate" onClick={() => handleDelete(reviewObj.id)}></Icon> : null}
       </Comment.Content>
     </Comment>
   )
@@ -49,7 +59,6 @@ function VinylModal({id, tag}){
   function handleReviewSubmit(e){
     e.preventDefault()
     const reviewData = {
-      user_id: 7,
       vinyl_id: id,
       title: userTitle,
       content: userContent,
@@ -58,6 +67,7 @@ function VinylModal({id, tag}){
     fetch("http://localhost:3000/reviews", {
       method: "POST",
       headers: {
+        "Authorization": `Bearer ${localStorage.token}`,
         "Content-type": "application/json"
       },
       body: JSON.stringify(reviewData)

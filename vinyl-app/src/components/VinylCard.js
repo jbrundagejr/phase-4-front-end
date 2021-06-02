@@ -2,7 +2,7 @@ import{useState} from 'react'
 import {Card, Image} from 'semantic-ui-react'
 import VinylModal from './VinylModal'
 
-function VinylCard({vinyl}){
+function VinylCard({vinyl, loggedInUser}){
   const {id, band_name, album_title, image_url, year_released} = vinyl
   const [showModal, setShowModal] = useState(false)
 
@@ -22,7 +22,7 @@ function VinylCard({vinyl}){
           </Card.Meta>
         </Card.Content>
         <Card.Content extra>
-          <VinylModal id={id} tag="vinyl-card"/>
+          <VinylModal id={id} tag="vinyl-card" loggedInUser={loggedInUser}/>
         </Card.Content>
       </Card>
     </div>

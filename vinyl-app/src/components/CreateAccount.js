@@ -1,12 +1,14 @@
 import {Form, Button, Modal, TextArea} from 'semantic-ui-react'
 import { useState } from 'react'
+import { useHistory } from 'react-router-dom'
 
-function CreateAccount(){
+function CreateAccount({onLogin}){
   const [open, setOpen] = useState(false)
   const [name, setName] = useState("")
   const [password, setPassword] = useState("")
   const [email, setEmail] = useState("")
   const [imgUrl, setImgUrl] = useState("")
+  const history = useHistory()
 
   function handleSubmit(e) {
     e.preventDefault()
@@ -25,8 +27,9 @@ function CreateAccount(){
     })
     .then(resp => resp.json())
     .then(newUserObj => {
-      console.log(newUserObj)
-      // localStorage.token = newUserObj.token
+      localStorage.token = newUserObj.token
+      onLogin(newUserObj)
+      history.push('/vinyls')
     })
   }
 

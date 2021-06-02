@@ -2,7 +2,7 @@ import {useState} from 'react'
 import {Input, Button} from 'semantic-ui-react'
 import {useHistory} from 'react-router-dom'
 
-function Login({ toggleLogIn }){
+function Login({ toggleLogIn, onLogin }){
   const [userName, setUserName] = useState("")
   const [userPassword, setUserPassword] = useState("")
   const history = useHistory()
@@ -22,17 +22,15 @@ function Login({ toggleLogIn }){
       headers:{
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({name: whatUserNamed, password: whatUserPassworded})
+      body: JSON.stringify({name: userName, password: userPassword})
     })
      .then(res => res.json())
-     .then(userInfo =>
-      localStorage.token = userInfo.token)
+     .then(userInfo => {
+      localStorage.token = userInfo.token
+      onLogin(userInfo)
       history.push('/vinyls')
-  }
-
-  function handleLogout(){
-    localStorage.clear()
-  }
+     }
+     )}
 
   return (
     <div>
@@ -41,8 +39,6 @@ function Login({ toggleLogIn }){
         <Input className="input" label='Password' id="userpassword" value={userPassword} onChange={whatUserPassworded} type="password" placeholder="Your password"></Input>
         <Button>Login</Button>
       </form>
-      <p onClick={toggleLogIn}>Don't have an account? Sign up.</p>
-      <Button onClick={handleLogout}>Logout</Button>
     </div>
   )
 }

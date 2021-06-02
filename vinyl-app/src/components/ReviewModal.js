@@ -1,12 +1,12 @@
-import {Modal, Image, Button, Comment} from 'semantic-ui-react'
+import {Modal, Image} from 'semantic-ui-react'
 import {useState} from 'react'
 
 function ReviewModal({review, starRating}) {
     const [open, setOpen] = useState(false)
 
-    return (
+  return (
     <div>
-        <Modal
+      <Modal
             onClose={() => setOpen(false)}
             onOpen={() => setOpen(true)}
             open={open}

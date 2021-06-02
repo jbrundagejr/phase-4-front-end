@@ -1,11 +1,17 @@
 import {NavLink} from "react-router-dom"
 import {useHistory} from "react-router-dom"
+import {Button} from 'semantic-ui-react'
 
-function Header(){
+function Header({loggedInUser, onLogin}){
   const history = useHistory()
 
   function handleHomeClick(){
     history.push("/")
+  }
+
+  function handleLogout(){
+    localStorage.clear()
+    onLogin(null)
   }
 
   return (
@@ -16,6 +22,7 @@ function Header(){
           <NavLink to="/vinyls">Records</NavLink>
           <NavLink to="/profile">Profile</NavLink>
           <NavLink to="/addVinyl">Add a Record</NavLink>
+          {loggedInUser ? <Button onClick={handleLogout}>Logout</Button> : null}
         </nav>
       </div>
     </div>
