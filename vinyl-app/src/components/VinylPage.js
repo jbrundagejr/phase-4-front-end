@@ -28,6 +28,10 @@ function VinylPage(){
     setSearchedVinyl(e)
   }
 
+  // function onAdd(newVinyl) {
+  //   setVinylArr([...vinylArr, newVinyl])
+  // }
+
   const searchedVinylArr = vinylByProduction.filter((vinyl) => {
     if (vinyl.band_name.toLowerCase().includes(searchedVinyl.toLowerCase())){
       return true

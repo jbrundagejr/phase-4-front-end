@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react'
-import {Modal, Image, Input, Rating, Form, Button, Comment} from 'semantic-ui-react'
+import {Modal, Image, Input, Rating, Form, Button, Comment, Select} from 'semantic-ui-react'
 
 function VinylModal({id}){
   const [vinyl, setVinyl] = useState(null)
@@ -8,19 +8,26 @@ function VinylModal({id}){
   const [userContent, setUserContent] = useState("")
   const [userRating, setUserRating] = useState("")
   const [open, setOpen] = useState(false)
+  const [userId, setUserId] = useState("All")
+  const [reviews, setReviews] = useState([])
 
   useEffect(() => {
     fetch(`http://localhost:3000/vinyls/${id}`)
       .then(res => res.json())
       .then(vinylData => {
         setVinyl(vinylData)
+        setReviews(vinylData.reviews)
         setIsLoaded(true)
       })
   }, [id])
 
   if (!isLoaded) return <p>Loading...</p>
 
-  const {band_name, album_title, image_url, year_released, in_production, reviews} = vinyl
+  const {band_name, album_title, image_url, year_released, in_production} = vinyl
+
+  // function idSelected(e) {
+  //   setUserId(e.target.value)
+  // }
 
   const reviewArray = reviews.map(reviewObj => 
     <Comment key={reviewObj.id}>
@@ -29,19 +36,21 @@ function VinylModal({id}){
         <Comment.Author>By: {reviewObj.user.name}</Comment.Author>
         <Comment.Text>{reviewObj.content}</Comment.Text>
         <Comment.Text>Rating: {reviewObj.rating}</Comment.Text>
+        {/* <Select value={userId} onChange={idSelected}>
+        </Select> */}
       </Comment.Content>
     </Comment>
   )
 
-  function rateAlbum(rating){
-    setUserRating(rating)
+  function rateAlbum(e, {rating, maxRating}){
+    setUserRating({rating, maxRating})
   }
 
   function handleReviewSubmit(e){
     e.preventDefault()
     const reviewData = {
-      // user_id: user.id
-      vinyl_id: vinyl.id,
+      user_id: 7,
+      vinyl_id: id,
       title: userTitle,
       content: userContent,
       rating: parseInt(userRating)
@@ -54,10 +63,11 @@ function VinylModal({id}){
       body: JSON.stringify(reviewData)
     })
       .then(res => res.json())
-      .then(updatedVinyl => {
-        setVinyl(updatedVinyl)
+      .then(newReview => {
+        setReviews([...reviews, newReview])
         setUserTitle("")
         setUserContent("")
+
       })
   }
 

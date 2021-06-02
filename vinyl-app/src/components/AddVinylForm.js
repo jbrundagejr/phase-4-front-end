@@ -37,7 +37,7 @@ function AddVinylForm(){
       album_title: albumTitle,
       image_url: imageURL,
       year_released: yearReleased,
-      in_productino: inProduction
+      in_production: inProduction
     }
     fetch('http://localhost:3000/vinyls', {
       method: "POST",
