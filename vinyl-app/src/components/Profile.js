@@ -1,5 +1,8 @@
 import { useEffect, useState} from 'react'
 import { useParams } from "react-router-dom"
+import {Card} from 'semantic-ui-react'
+import ReviewCard from './ReviewCard'
+import VinylModal from './VinylModal'
 
 function Profile(){
   const [userData, setUserData] = useState({})
@@ -23,16 +26,7 @@ function Profile(){
   if (isLoaded) {
 
     const userReviewsList = userData.reviews.map(review => {
-      // Replace with component?
-      return(
-        <div className="temp-review-card" key={review.id}>
-          <img src={review.reviewed_vinyl.image_url} alt={review.reviewed_vinyl.album_title} style={{height: "150px"}}/>
-          <h2>{review.reviewed_vinyl.album_title}</h2>
-          <h3>{review.reviewed_vinyl.band_name}</h3>
-          <p>{review.rating}/5</p>
-          <p>{review.content}</p>
-        </div>
-      )
+      return <ReviewCard key={review.id} review={review} />
     })
 
     return (
@@ -44,7 +38,14 @@ function Profile(){
           <p>Average Vinyl Rating: {userData.reviews.length === 0 ? "N/A" : averageRating(userData.reviews)}</p>
         </div>
         <div className="user-reviews-list">
+        <Card>
+          <Card.Content>
+          <Card.Header>My Reviews</Card.Header>
+          </Card.Content>
+          <Card.Content>
           {userReviewsList}
+          </Card.Content>
+        </Card>
         </div>
       </div>
     )

@@ -47,7 +47,7 @@ function AddVinylForm(){
       body: JSON.stringify(newVinylData)
     })
       .then(res => res.json())
-      .then(newBeerData => {
+      .then(newVinylData => {
         history.push("/vinyls")
       })
   }
@@ -66,8 +66,8 @@ function AddVinylForm(){
         <Input className="input" id="yearreleased" value={yearReleased} onChange={whatUserYearReleased} type="text" placeholder="Year Released"></Input>
         <label htmlFor="inProduction" className="label">In Productin?</label>
         <select value={inProduction} onChange={whatUserInProduction} id="inProduction" name="In-production">
-          <option value="true">Yes</option>
-          <option value="false">No</option>
+          <option value={true}>Yes</option>
+          <option value={false}>No</option>
         </select>
         <Button>Submit New Vinyl</Button>
       </form>

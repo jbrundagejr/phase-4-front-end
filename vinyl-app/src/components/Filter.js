@@ -17,8 +17,9 @@ function Filter({onProductionChange}){
       </div>
       <div>
         <select name="production-filter" onChange={handleProductionChange}>
-          <option value="true">Yes</option>
-          <option value="false">No</option>
+        <option value="All">All Records</option>
+          <option value={true}>Yes</option>
+          <option value={false}>No</option>
         </select>
         <Button onClick={resetFilter}>Reset</Button>
       </div>

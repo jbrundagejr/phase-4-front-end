@@ -2,6 +2,7 @@ import {useState, useEffect} from 'react'
 import VinylList from './VinylList'
 import Search from './Search'
 import Filter from './Filter'
+import { Select } from 'semantic-ui-react'
 
 function VinylPage(){
   const [vinylArr, setVinylArr] = useState([])
@@ -21,16 +22,16 @@ function VinylPage(){
   const vinylByProduction = vinylArr.filter((vinyl) => {
     if (selectedProduction === "All") {
       return true
-    } else { return selectedProduction === vinyl.in_production}
+    } else if (selectedProduction === true){
+    return vinyl.in_production === true
+    } else  { return !vinyl.in_production }
   })
+
+  console.log(selectedProduction)
 
   function handleSearch(e){
     setSearchedVinyl(e)
   }
-
-  // function onAdd(newVinyl) {
-  //   setVinylArr([...vinylArr, newVinyl])
-  // }
 
   const searchedVinylArr = vinylByProduction.filter((vinyl) => {
     if (vinyl.band_name.toLowerCase().includes(searchedVinyl.toLowerCase())){
