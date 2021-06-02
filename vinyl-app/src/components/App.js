@@ -24,7 +24,7 @@ function App() {
       <Route exact path="/vinyls">
         <VinylPage />
       </Route>
-        <Route exact path = "/profile">
+      <Route exact path = "/profile/:id">
         <Profile />
       </Route>
       <Route exact path = "/addVinyl">
