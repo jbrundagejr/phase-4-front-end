@@ -1,15 +1,33 @@
 import {Feed} from 'semantic-ui-react'
+import VinylModal from './VinylModal'
+import ReviewModal from './ReviewModal'
 
 function ReviewCard({review}){
+
+  function starRating(rating) {
+    if (rating === 1) {
+        return "⭐"
+    } else if (rating === 2) {
+        return "⭐⭐"
+    } else if (rating === 3) {
+        return "⭐⭐⭐"
+    } else if (rating === 4) {
+        return "⭐⭐⭐⭐"
+    } else {
+        return "⭐⭐⭐⭐⭐"
+    }
+}
+
   return(
    
       <Feed>
         <Feed.Event>
-          <Feed.Label image={review.reviewed_vinyl.image_url} alt={review.reviewed_vinyl.album_title} />
+          <Feed.Label image={<VinylModal id={review.vinyl_id} tag="review"/>} />
           <Feed.Content>
             <Feed.Summary>
-              <p>{review.title}</p>
-              <p>{review.rating}</p>
+              <ReviewModal review={review} starRating={starRating}/>
+              <p>{starRating(review.rating)}</p>
+              {/* <VinylModal id={review.vinyl_id} tag="review"/> */}
             </Feed.Summary>
           </Feed.Content>
         </Feed.Event>

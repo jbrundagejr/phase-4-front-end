@@ -22,7 +22,7 @@ function VinylCard({vinyl}){
           </Card.Meta>
         </Card.Content>
         <Card.Content extra>
-          <VinylModal id={id}/>
+          <VinylModal id={id} tag="vinyl-card"/>
         </Card.Content>
       </Card>
     </div>

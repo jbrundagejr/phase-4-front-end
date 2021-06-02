@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react'
 import {Modal, Image, Input, Rating, Form, Button, Comment, Select} from 'semantic-ui-react'
 
-function VinylModal({id}){
+function VinylModal({id, tag}){
   const [vinyl, setVinyl] = useState(null)
   const [isLoaded, setIsLoaded] = useState(false)
   const [userTitle, setUserTitle] = useState("")
@@ -71,13 +71,21 @@ function VinylModal({id}){
       })
   }
 
+  function checkTag(tag) {
+    if (tag === "review") {
+      return <img src={image_url} alt={album_title}/>
+    } else {
+      return <Button>Details</Button>
+    }
+  }
+
   return (
     <div>
       <Modal
         onClose={() => setOpen(false)}
         onOpen={() => setOpen(true)}
         open={open}
-        trigger={<Button>Details</Button>}>
+        trigger={checkTag(tag)}>
         <Modal.Header>{album_title}</Modal.Header>
         <Modal.Content image>
           <Image size='medium' src={image_url} wrapped />
