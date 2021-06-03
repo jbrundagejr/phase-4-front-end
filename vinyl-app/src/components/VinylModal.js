@@ -47,7 +47,8 @@ function VinylModal({id, tag, loggedInUser}){
         <Comment.Author>By: {reviewObj.user.name}</Comment.Author>
         <Comment.Text>{reviewObj.content}</Comment.Text>
         <Comment.Text>Rating: {reviewObj.rating}</Comment.Text>
-        {loggedInUser.user === reviewObj.user_id ? <Icon name="trash alternate" onClick={() => handleDelete(reviewObj.id)}></Icon> : null}
+        {loggedInAndMatchStatus(reviewObj) ? <Icon name="trash alternate" onClick={() => handleDelete(reviewObj.id)}></Icon> : null}
+        {/* {loggedInUser.user === reviewObj.user_id ? <Icon name="trash alternate" onClick={() => handleDelete(reviewObj.id)}></Icon> : null} */}
       </Comment.Content>
     </Comment>
   )
@@ -55,6 +56,18 @@ function VinylModal({id, tag, loggedInUser}){
   function rateAlbum(e, {rating, maxRating}){
     setUserRating({rating, maxRating})
   }
+
+  function loggedInAndMatchStatus(reviewObj) {
+      if (loggedInUser) {
+        if (loggedInUser.user === reviewObj.user_id) {
+          return true
+        } else {
+          return false
+        }
+      } else {
+        return false
+      }
+    }
 
   function handleReviewSubmit(e){
     e.preventDefault()

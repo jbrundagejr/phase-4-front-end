@@ -19,7 +19,7 @@ function App() {
 
   return (
     <div >
-     <Header onLogin={onLogin} loggedInUser={loggedInUser}/>
+     <Header onLogin={onLogin} setLoggedInUser={setLoggedInUser} loggedInUser={loggedInUser}/>
      <Switch>
       <Route exact path="/">
         <Login onLogin={onLogin} loggedInUser={loggedInUser}/>
