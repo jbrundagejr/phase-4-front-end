@@ -1,5 +1,4 @@
-import React from 'react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Switch, Route, useHistory } from "react-router-dom"
 import Header from './Header'
 import Login from './Login'
@@ -12,8 +11,30 @@ function App() {
   const [loggedInUser, setLoggedInUser] = useState(null)
   const history = useHistory()
 
-  function onLogin(userInfo){
-    setLoggedInUser(userInfo)
+  useEffect(() => {
+    if (localStorage.token) {
+      fetch("http://localhost:3000/users/keep_logged_in", {
+        method: "GET",
+        headers: {
+          "Authorization": localStorage.token
+        }
+      })
+      .then(resp => resp.json())
+      .then(resp => helpHandleResponse(resp))
+    }
+  }, [])
+
+  function helpHandleResponse(resp) {
+    if (resp.error) {
+      console.error(resp.error)
+    } else {
+      localStorage.token = resp.token
+      setLoggedInUser(resp.user)
+    }
+  }
+
+  function onLogin(userInfo, token){
+    setLoggedInUser([userInfo, token])
     history.push('/')
   }
 

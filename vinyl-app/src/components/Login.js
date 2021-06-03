@@ -27,7 +27,7 @@ function Login({ toggleLogIn, onLogin }){
      .then(res => res.json())
      .then(userInfo => {
       localStorage.token = userInfo.token
-      onLogin(userInfo)
+      onLogin(userInfo, userInfo.token)
       history.push('/vinyls')
      }
      )}

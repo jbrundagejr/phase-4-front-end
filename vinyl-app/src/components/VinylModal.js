@@ -40,6 +40,18 @@ function VinylModal({id, tag, loggedInUser}){
       })
   }
 
+  // function loggedInAndMatchStatus(reviewObj) {
+  //   if (loggedInUser) {
+  //     if (loggedInUser.user === reviewObj.user_id) {
+  //       return true
+  //     } else {
+  //       return false
+  //     }
+  //   } else {
+  //     return false
+  //   }
+  // }
+
   const reviewArray = reviews.map(reviewObj => 
     <Comment key={reviewObj.id}>
       <Comment.Content>
@@ -48,6 +60,7 @@ function VinylModal({id, tag, loggedInUser}){
         <Comment.Text>{reviewObj.content}</Comment.Text>
         <Comment.Text>Rating: {reviewObj.rating}</Comment.Text>
         {loggedInUser.user === reviewObj.user_id ? <Icon name="trash alternate" onClick={() => handleDelete(reviewObj.id)}></Icon> : null}
+        {/* {loggedInAndMatchStatus(reviewObj) ? <Icon name="trash alternate" onClick={() => handleDelete(reviewObj.id)}></Icon> : null} */}
       </Comment.Content>
     </Comment>
   )
@@ -74,6 +87,7 @@ function VinylModal({id, tag, loggedInUser}){
     })
       .then(res => res.json())
       .then(newReview => {
+        console.log(newReview)
         setReviews([...reviews, newReview])
         setUserTitle("")
         setUserContent("")

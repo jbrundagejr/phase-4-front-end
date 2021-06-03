@@ -11,7 +11,9 @@ function VinylPage({loggedInUser}){
   useEffect(() => {
     fetch('http://localhost:3000/vinyls')
       .then(res => res.json())
-      .then(vinylData => setVinylArr(vinylData))
+      .then(vinylData => {
+        console.log(vinylData)
+        setVinylArr(vinylData)})
   }, [])
 
   function onProductionChange(selectedProduction){
@@ -25,6 +27,8 @@ function VinylPage({loggedInUser}){
     return vinyl.in_production === true
     } else  { return !vinyl.in_production }
   })
+
+  console.log(vinylArr)
 
   function handleSearch(e){
     setSearchedVinyl(e)
