@@ -26,7 +26,7 @@ function ReviewCard({review}){
           <Feed.Content>
             <Feed.Summary>
               <ReviewModal review={review} starRating={starRating}/>
-              <p>{starRating(review.rating)}</p>
+              <p id="reviewCardStars">{starRating(review.rating)}</p>
               {/* <VinylModal id={review.vinyl_id} tag="review"/> */}
             </Feed.Summary>
           </Feed.Content>

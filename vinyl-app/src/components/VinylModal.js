@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react'
 import {NavLink} from "react-router-dom"
-import {Modal, Image, Input, Rating, Form, Button, Comment, Icon, TextArea} from 'semantic-ui-react'
+import {Modal, Image, Input, Rating, Form, Button, Comment, Icon, Card, TextArea} from 'semantic-ui-react'
 
 function VinylModal({id, tag, loggedInUser}){
   const [vinyl, setVinyl] = useState(null)
@@ -23,7 +23,7 @@ function VinylModal({id, tag, loggedInUser}){
 
   if (!isLoaded) return <p>Loading...</p>
 
-  const {band_name, album_title, image_url, year_released, in_production, average_rating} = vinyl
+  const {band_name, album_title, image_url, year_released, in_production} = vinyl
   
   function handleDelete(id){
     fetch(`http://localhost:3000/reviews/${id}`, {
@@ -46,7 +46,7 @@ function VinylModal({id, tag, loggedInUser}){
       <Comment.Content>
         <Comment.Author><h4>{reviewObj.title}</h4></Comment.Author>
         {/* <Comment.Author>By: {reviewObj.user.name}</Comment.Author> */}
-        <Comment.Author><p>By: <NavLink to={`/profiles/${reviewObj.user.id}`}>{reviewObj.user.name}</NavLink></p></Comment.Author>
+        <Comment.Author><p id="commentAuthor">By: <NavLink to={`/profiles/${reviewObj.user.id}`}>{reviewObj.user.name}</NavLink></p></Comment.Author>
         <Comment.Text><p>{reviewObj.content}</p></Comment.Text>
         <Comment.Text><p>Rating: {reviewObj.rating}</p></Comment.Text>
         {loggedInAndMatchStatus(reviewObj) ? <Icon name="trash alternate" onClick={() => handleDelete(reviewObj.id)}></Icon> : null}
@@ -100,9 +100,9 @@ function VinylModal({id, tag, loggedInUser}){
 
   function checkTag(tag) {
     if (tag === "review") {
-      return <img src={image_url} alt={album_title}/>
+      return <Image size="small" src={image_url} alt={album_title}/>
     } else {
-      return <Button>Details</Button>
+      return <Card><Image src={image_url} alt={band_name} wrapped ui={false} /></Card>
     }
   }
 
@@ -131,6 +131,22 @@ function VinylModal({id, tag, loggedInUser}){
   }
   }
 
+  function isUserLoggedIn(){
+    if (loggedInUser) {
+      return (
+          <div>
+            <h4 className="rate-title">Review this album</h4>
+            <Form onSubmit={handleReviewSubmit} reply>
+            <Input value={userTitle} placeholder="Your Title" onChange={e => setUserTitle(e.target.value)}/>
+            <TextArea value={userContent} placeholder="Your Review" onChange={e => setUserContent(e.target.value)}/>
+            <Rating onRate={rateAlbum} value={userRating} maxRating={5} clearable/>
+            <br/>
+            <Button content='Add Review' labelPosition='left' icon='edit' primary />
+            </Form>
+          </div>)
+    }
+  }
+
   return (
     <div className="vinyl-modal">
       <Modal
@@ -149,14 +165,7 @@ function VinylModal({id, tag, loggedInUser}){
           <Comment.Group>
             <h3>Reviews</h3>
             {reviewArray}
-            <h4 className="rate-title">Review this album</h4>
-            <Form onSubmit={handleReviewSubmit} reply>
-              <Input value={userTitle} placeholder="Your Title" onChange={e => setUserTitle(e.target.value)}/>
-              <TextArea value={userContent} placeholder="Your Review" onChange={e => setUserContent(e.target.value)}/>
-              <Rating onRate={rateAlbum} value={userRating} maxRating={5} clearable/>
-              <br/>
-              <Button content='Add Review' labelPosition='left' icon='edit' primary />
-            </Form>
+            {loggedInUser ? isUserLoggedIn() : null }
           </Comment.Group>
         </Modal.Description>
       </Modal.Content>

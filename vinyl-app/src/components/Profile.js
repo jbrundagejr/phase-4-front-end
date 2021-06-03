@@ -1,8 +1,7 @@
 import { useEffect, useState} from 'react'
-import { useParams } from "react-router-dom"
-import {Card} from 'semantic-ui-react'
+import { useParams, NavLink } from "react-router-dom"
+import {Card, Icon} from 'semantic-ui-react'
 import ReviewCard from './ReviewCard'
-import VinylModal from './VinylModal'
 
 function Profile(){
   const [userData, setUserData] = useState({})
@@ -33,7 +32,8 @@ function Profile(){
       <div className="profile-page">
         <div className="info-panel">
           <h1>{userData.name}</h1>
-          <img src={userData.image_url} alt={userData.name} style={{height: "300px"}}/>
+          <img src={userData.image_url} alt={userData.name} style={{height: "300px"}}/><br/>
+          <a href={`mailto: ${userData.email}`}> <Icon name="mail"></Icon></a>
           <p>Total Reviews: {userData.reviews.length}</p>
           <p>Average Vinyl Rating: {userData.reviews.length === 0 ? "N/A" : averageRating(userData.reviews)}</p>
         </div>
@@ -46,6 +46,7 @@ function Profile(){
           {userReviewsList}
           </Card.Content>
         </Card>
+        <NavLink to="/addVinyl">Add a Record</NavLink>
         </div>
       </div>
     )

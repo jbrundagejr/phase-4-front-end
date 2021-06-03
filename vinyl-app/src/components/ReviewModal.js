@@ -10,7 +10,7 @@ function ReviewModal({review, starRating}) {
             onClose={() => setOpen(false)}
             onOpen={() => setOpen(true)}
             open={open}
-            trigger={<p>{review.title}</p>}>
+            trigger={<p id="reviewModalTitle">{review.title}</p>}>
             <Modal.Header>{review.reviewed_vinyl.band_name} - {review.reviewed_vinyl.album_title}</Modal.Header>
             <Modal.Content image>
             <Image size='medium' src={review.reviewed_vinyl.image_url} wrapped />

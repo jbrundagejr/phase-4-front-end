@@ -3,7 +3,6 @@ import { useState } from 'react'
 import { Switch, Route, useHistory } from "react-router-dom"
 import Header from './Header'
 import Login from './Login'
-import CreateAccount from './CreateAccount'
 import VinylPage from './VinylPage'
 import Profile from './Profile'
 import AddVinylForm from './AddVinylForm'

@@ -54,16 +54,18 @@ function AddVinylForm(){
 
   return (
     <div>
+      <div id="vinylFormHeader">
       <h2>Add Vinyl Form </h2>
-      <form onSubmit={handleSubmit}>
+      </div>
+      <form className="form" onSubmit={handleSubmit}>
         <label htmlFor="bandname" className="label">Band Name</label>
-        <Input className="input" id="bandname" value={bandName} onChange={whatUserNamedBand} type="text" placeholder="Band Name"></Input>
+        <Input className="input" value={bandName} onChange={whatUserNamedBand} type="text" placeholder="Band Name"></Input>
         <label htmlFor="albumtitle" className="label">Album Title</label>
-        <Input className="input" id="albumtitle" value={albumTitle} onChange={whatUserTitledAlbum} type="text" placeholder="Album Title"></Input>
+        <Input className="input"  value={albumTitle} onChange={whatUserTitledAlbum} type="text" placeholder="Album Title"></Input>
         <label htmlFor="imageURL" className="label">Album Cover URL</label>
-        <Input className="input" id="imageURL" value={imageURL} onChange={whatUserImaged} type="url" placeholder="Album Cover URL"></Input>
+        <Input className="input" value={imageURL} onChange={whatUserImaged} type="url" placeholder="Album Cover URL"></Input>
         <label htmlFor="yearreleased" className="label">Year Released</label>
-        <Input className="input" id="yearreleased" value={yearReleased} onChange={whatUserYearReleased} type="text" placeholder="Year Released"></Input>
+        <Input className="input" value={yearReleased} onChange={whatUserYearReleased} type="text" placeholder="Year Released"></Input>
         <label htmlFor="inProduction" className="label">In Production?</label>
         <select value={inProduction} onChange={whatUserInProduction} id="inProduction" name="In-production">
           <option value={true}>Yes</option>

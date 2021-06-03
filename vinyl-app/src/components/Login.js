@@ -36,12 +36,13 @@ function Login({ toggleLogIn, onLogin }){
   return (
     <div id="photoContainer">
       <div id="loginFormContainer">
-        <p>Welcome to vinylboxd! This is a place to review and share all your favorite vinyl records!</p>
-        <p>Login to get started.</p>
+        <p className="welcomeBodyFont">Welcome to vinylboxd! This is a place to review and share all your favorite vinyl records!</p>
+        <p className="welcomeBodyFont">Login to get started.</p>
         <form onSubmit={handleClick}>
         <Input className="input" label='  Name  ' id="name" value={userName} onChange={whatUserNamed} type="text" placeholder="Your name"></Input><br/>
         <Input className="input" label='Password' id="userpassword" value={userPassword} onChange={whatUserPassworded} type="password" placeholder="Your password"></Input><br/>
-        <Button>Login</Button>
+        <Button>Login</Button><br/>
+        <p className="welcomeBodyFont" id="loginBlurb"> Don't have an account?</p>
         <CreateAccount onLogin={onLogin} />
       </form>
       </div>
