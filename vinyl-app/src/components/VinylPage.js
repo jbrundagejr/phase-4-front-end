@@ -39,10 +39,13 @@ function VinylPage({loggedInUser}){
 
   return (
     <div>
-      <div>
-        <Search searchedVinyl={searchedVinyl} onSearch={handleSearch} />
+      <div className="page" >
+        <div id="vinyl-page">
+          <h2>Vinyl Collection</h2>
+          <Search searchedVinyl={searchedVinyl} onSearch={handleSearch} />
+        </div>
+        <VinylList vinylArr={searchedVinylArr} loggedInUser={loggedInUser}/>
       </div>
-      <VinylList vinylArr={searchedVinylArr} loggedInUser={loggedInUser}/>
     </div>
   )
 }

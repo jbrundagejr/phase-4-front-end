@@ -34,6 +34,7 @@ function App() {
         <AddVinylForm />
       </Route>
      </Switch>
+     
     </div>
   )
 }

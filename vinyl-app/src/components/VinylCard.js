@@ -11,14 +11,14 @@ function VinylCard({vinyl, loggedInUser}){
   }
 
   return (
-    <div>
+    <div className="card-div">
       <Card>
         <Image onClick={handlePopUp} src={image_url} alt={band_name} wrapped ui={false} />
         <Card.Content>
-          <Card.Header>{album_title}</Card.Header>
+          <Card.Header> <h3 className="card-content">{album_title}</h3></Card.Header>
           <Card.Meta>
-            <h4>{band_name}</h4>
-            <p>{year_released}</p>
+            <h4 className="card-content">{band_name}</h4>
+            <p className="card-content">{year_released}</p>
           </Card.Meta>
         </Card.Content>
         <Card.Content extra>

@@ -1,3 +1,5 @@
+
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,6 +7,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: rgb(50, 50, 50);
+  margin: 0 20%;
 }
 
 
@@ -27,7 +31,21 @@ h1:hover {
 }
 
 h2 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 2em;
+  color: white;
+}
 
+h3 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.5em;
+  color: rgb(0, 0, 0);
+}
+
+h4 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.25em;
+  color: rgb(0, 0, 0);
 }
 
 #logo{
@@ -51,7 +69,7 @@ a:hover {
 
 p {
   font-family: 'Poppins', sans-serif;
-  font-weight: 100;
+  font-weight: 200;
   font-size: 2em;
   color: white;
 }
@@ -72,13 +90,17 @@ p {
 }
 
 div#loginFormContainer {
-  display: grid;
-  place-items: center;
+  display: flex;
+  padding-top: 10%;
+  text-align: center;
+  align-content: center;
+  flex-direction: column;
+  /* justify-content: center; */
   height: 100vh;
   background-size: 100%;
-  background-image: url("https://lh3.googleusercontent.com/pw/ACtC-3fpBGK-k8qxEbxa1V0utB7iJS3tDjRyUaESbgJvvylI0F7wEvVeza6tWxPHlaWuKw6nHSHXFJ1hz7eR-5z5i8YQJLxcFbYcasepdH1M8jrPc9L3y5xLOqkvxw-bcSxJdKELlGmamHeN9EEPD_5-xhw2=w3706-h2082-no?authuser=0");
+  background-image: url("https://lh3.googleusercontent.com/A6_cPTYqWwxXOnOVTFyVWpB8S7DgUeKYdmclDMM46eRQqNGvogleyKQ3zOqdj3k6UjF8zV5PD9WOEsX5VB8xWeQHRCCPcOQIo-_7NxERBQYRKO3OSFKb1HyiyAxykDZY8k3vKxA0TKl6gUmjFTj9k7_xbZtOu9Q4GMH_ozQlv2jgvlNGRd2378NzUeuy3aG72rdOHRK4Q_hfSKJEj5NjGGs_lpZw-9RX8N2gwhbz4vgygkUqSUejoDdtldfipLPoJf8mMWsRrmu-xe9p7rUNx7D-4IQixo_OEEj63TV-fzhG34EjiPycZmRzxIlnJQmIByVg2iBVliYFbSBXncHSbOuSPlvLV78fgSkUhBQyT4vXBAo7KZjkFMxY2kQz57IES6g91of5O7_eyhv6eY2kyd1-N9SdJcJvxELIZ-sXIjAxFsXXoDLZOTDkHVpzVW6dNPeQMCr330NENA7IcefK5hC_sLRnKHy87Ss9JAFDORlM77RVIyZfU73Mx1IE5OE1O7NIckLY0k2sTN8thbGd4XNKF0fIty25ChiKtNLyJn5oPrFp6MduabNoB-WPqJYQr0ryqHSdhmNITn84t7nYhu58392ITetUSkBDmug8udFz829zca5mX7AP0rc0WNhX4yaDWPuz7OdQNG_wqAoXCVEzirF3_97GOerdNwAccbCbIkLSindA9TZ04VfScMLfSbsP9BVcj5akBkozlkpOeNg=w3706-h2082-no?authuser=0");
+  background-repeat: no-repeat;
 }
-
 
 .input {
   width: 150px;
@@ -87,4 +109,60 @@ div#loginFormContainer {
 
 div.ui.label {
   width: 90px
+}
+
+.card-div {
+  margin-top: 30px;
+  padding: 15px;
+  /* background-color: rgb(205, 205, 205); */
+}
+
+#card-collection {
+  display: flex;
+  justify-content: center;
+}
+
+/* .page {
+  margin: 0 20%;
+  background-color: rgb(118, 118, 118);
+  background-color: rgb(50, 50, 50);
+} */
+
+#vinyl-page {
+  padding-top: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: baseline;
+}
+
+.ui.input>input {
+  width: 300px
+}
+
+/* .vinyl-cards {
+  background-color: rgb(191, 191, 191);
+}
+
+div.content {
+  background-color: rgb(174, 174, 174);
+} */
+
+.card-content {
+  color: black;
+  font-family: 'Poppins', sans-serif;
+}
+
+p.card-content {
+  font-size: 20px;
+}
+
+.vinyl-modal h3, p, h4, a{
+  color: black;
+  font-size: 15px;
+  font-family: 'Poppins', sans-serif;
+}
+
+p span {
+  font-weight: bold;
 }

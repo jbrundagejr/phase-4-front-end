@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react'
 import {NavLink} from "react-router-dom"
-import {Modal, Image, Input, Rating, Form, Button, Comment, Icon} from 'semantic-ui-react'
+import {Modal, Image, Input, Rating, Form, Button, Comment, Icon, TextArea} from 'semantic-ui-react'
 
 function VinylModal({id, tag, loggedInUser}){
   const [vinyl, setVinyl] = useState(null)
@@ -44,11 +44,11 @@ function VinylModal({id, tag, loggedInUser}){
   const reviewArray = reviews.map(reviewObj => 
     <Comment key={reviewObj.id}>
       <Comment.Content>
-        <Comment.Author>{reviewObj.title}</Comment.Author>
+        <Comment.Author><h4>{reviewObj.title}</h4></Comment.Author>
         {/* <Comment.Author>By: {reviewObj.user.name}</Comment.Author> */}
-        <Comment.Author>By: <NavLink to={`/profiles/${reviewObj.user.id}`}>{reviewObj.user.name}</NavLink></Comment.Author>
-        <Comment.Text>{reviewObj.content}</Comment.Text>
-        <Comment.Text>Rating: {reviewObj.rating}</Comment.Text>
+        <Comment.Author><p>By: <NavLink to={`/profiles/${reviewObj.user.id}`}>{reviewObj.user.name}</NavLink></p></Comment.Author>
+        <Comment.Text><p>{reviewObj.content}</p></Comment.Text>
+        <Comment.Text><p>Rating: {reviewObj.rating}</p></Comment.Text>
         {loggedInAndMatchStatus(reviewObj) ? <Icon name="trash alternate" onClick={() => handleDelete(reviewObj.id)}></Icon> : null}
         {/* {loggedInUser.user === reviewObj.user_id ? <Icon name="trash alternate" onClick={() => handleDelete(reviewObj.id)}></Icon> : null} */}
       </Comment.Content>
@@ -132,28 +132,29 @@ function VinylModal({id, tag, loggedInUser}){
   }
 
   return (
-    <div>
+    <div className="vinyl-modal">
       <Modal
         onClose={() => setOpen(false)}
         onOpen={() => setOpen(true)}
         open={open}
         trigger={checkTag(tag)}>
-        <Modal.Header>{album_title}</Modal.Header>
+        <Modal.Header><h3>{album_title}</h3></Modal.Header>
         <Modal.Content image>
           <Image size='medium' src={image_url} wrapped />
           <Modal.Description>
             <h3>{band_name}</h3>
-            <p>Year Released: {year_released}</p>
-            <p>Still in Production? {in_production ? "Yes" : "No"}</p>
-            <p>Average User Rating: {starRatingDecimal(averageRating(reviews))} </p>
+            <p><span>Year Released:</span> {year_released}</p>
+            <p><span>Still in Production?</span> {in_production ? "Yes" : "No"}</p>
+            <p><span>Average User Rating:</span> {starRatingDecimal(averageRating(reviews))} </p>
           <Comment.Group>
             <h3>Reviews</h3>
             {reviewArray}
-            <h4 className="rate-title">Rate this album</h4>
+            <h4 className="rate-title">Review this album</h4>
             <Form onSubmit={handleReviewSubmit} reply>
               <Input value={userTitle} placeholder="Your Title" onChange={e => setUserTitle(e.target.value)}/>
-              <Input value={userContent} placeholder="Your Review" onChange={e => setUserContent(e.target.value)}/>
+              <TextArea value={userContent} placeholder="Your Review" onChange={e => setUserContent(e.target.value)}/>
               <Rating onRate={rateAlbum} value={userRating} maxRating={5} clearable/>
+              <br/>
               <Button content='Add Review' labelPosition='left' icon='edit' primary />
             </Form>
           </Comment.Group>

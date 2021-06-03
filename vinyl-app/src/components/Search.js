@@ -4,9 +4,6 @@ function Search({searchedVinyl, onSearch}){
   return(
     <div>
       <div>
-        <h3>Search</h3>
-      </div>
-      <div>
         <Input 
           type="text" 
           id="search" 
