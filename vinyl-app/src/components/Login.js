@@ -1,6 +1,7 @@
 import {useState} from 'react'
 import {Input, Button} from 'semantic-ui-react'
 import {useHistory} from 'react-router-dom'
+import CreateAccount from './CreateAccount'
 
 function Login({ toggleLogIn, onLogin }){
   const [userName, setUserName] = useState("")
@@ -33,12 +34,16 @@ function Login({ toggleLogIn, onLogin }){
      )}
 
   return (
-    <div>
-      <form onSubmit={handleClick}>
-        <Input className="input" label='Name' id="name" value={userName} onChange={whatUserNamed} type="text" placeholder="Your name"></Input>
-        <Input className="input" label='Password' id="userpassword" value={userPassword} onChange={whatUserPassworded} type="password" placeholder="Your password"></Input>
+    <div id="photoContainer">
+      <div id="loginFormContainer">
+        <p>Welcome to vinlyboxd! This is a place to review and share all your favorite vinyl records! Login to get started.</p>
+        <form onSubmit={handleClick}>
+        <Input className="input" label='  Name  ' id="name" value={userName} onChange={whatUserNamed} type="text" placeholder="Your name"></Input><br/>
+        <Input className="input" label='Password' id="userpassword" value={userPassword} onChange={whatUserPassworded} type="password" placeholder="Your password"></Input><br/>
         <Button>Login</Button>
+        <CreateAccount onLogin={onLogin} />
       </form>
+      </div>
     </div>
   )
 }

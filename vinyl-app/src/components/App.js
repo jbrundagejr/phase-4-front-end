@@ -23,7 +23,6 @@ function App() {
      <Switch>
       <Route exact path="/">
         <Login onLogin={onLogin} loggedInUser={loggedInUser}/>
-        <CreateAccount onLogin={onLogin}/>
       </Route>
       <Route exact path="/vinyls">
         <VinylPage loggedInUser={loggedInUser}/>

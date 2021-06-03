@@ -6,27 +6,6 @@ import {Button} from 'semantic-ui-react'
 function Header({setLoggedInUser, loggedInUser, onLogin}){
   const history = useHistory()
   
-  // useEffect(() => {
-  //   if(localStorage.token){
-  //     fetch(`http://localhost:3000/keep_logged_in`,{
-  //       method: "POST",
-  //       headers: {
-  //         "Authorization": `Bearer ${localStorage.token}`,
-  //         "content-type": "application/json"
-  //       },
-  //       body: JSON.stringify({
-  //         token: localStorage.token
-  //       })
-  //     })
-  //     .then(res => res.json())
-  //     .then(res => {
-  //       console.log(res)
-  //       setLoggedInUser(res)})
-  //   }
-  // }, [setLoggedInUser])
-
-  // console.log(loggedInUser)
-
   function handleHomeClick(){
     history.push("/")
   }
@@ -38,8 +17,12 @@ function Header({setLoggedInUser, loggedInUser, onLogin}){
 
   return (
     <div>
-      <h1 onClick={handleHomeClick}>Vinyl Collection App</h1>
+      
       <div id='navContainer'>
+        <div id="logoHeaderContainer">
+          <img id="logo" src="https://i.imgur.com/BJfncxA.png"></img>
+          <h1 onClick={handleHomeClick}>vinylboxd</h1>
+        </div>
         <nav>
           <NavLink to="/vinyls">Records</NavLink>
           { loggedInUser ? <NavLink to={`/profile/${loggedInUser.user}`}>{loggedInUser.name}</NavLink> : null }

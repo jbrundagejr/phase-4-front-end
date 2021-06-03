@@ -7,7 +7,84 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+h1 {
+  font-family: 'Poppins', sans-serif;
+  color: white;
+  font-weight: 200;
+  font-size: 4em;
+}
+
+h1:hover {
+  cursor: pointer;
+  color: black;
+}
+
+h2 {
+
+}
+
+#logo{
+  padding-top: 20px;
+  height: 75px;
+  width: auto;
+}
+
+a {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 200;
+  font-size: 2em;
+  padding-left: 20px;
+  padding-right: 20px;
+  color: white;
+}
+
+a:hover {
+  color: black;
+}
+
+p {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 100;
+  font-size: 2em;
+  color: white;
+}
+
+#logoHeaderContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  line-height: 5em;
+}
+
+#navContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 5em;
+  background-color: rgb(175, 42, 9);
+}
+
+div#loginFormContainer {
+  display: grid;
+  place-items: center;
+  height: 100vh;
+  background-size: 100%;
+  background-image: url("https://lh3.googleusercontent.com/pw/ACtC-3fpBGK-k8qxEbxa1V0utB7iJS3tDjRyUaESbgJvvylI0F7wEvVeza6tWxPHlaWuKw6nHSHXFJ1hz7eR-5z5i8YQJLxcFbYcasepdH1M8jrPc9L3y5xLOqkvxw-bcSxJdKELlGmamHeN9EEPD_5-xhw2=w3706-h2082-no?authuser=0");
+}
+
+
+.input {
+  width: 150px;
+  padding: .5em
+}
+
+div.ui.label {
+  width: 90px
 }
