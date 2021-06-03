@@ -7,19 +7,25 @@ function Header({setLoggedInUser, loggedInUser, onLogin}){
   const history = useHistory()
   
   // useEffect(() => {
-  //   if(localStorage){
-  //     fetch(`http://localhost:3000/users/${loggedInUser.id}`,{
-  //       method: "GET",
+  //   if(localStorage.token){
+  //     fetch(`http://localhost:3000/keep_logged_in`,{
+  //       method: "POST",
   //       headers: {
-  //         "Authorization": `Bearer ${localStorage.token}`
-  //       }
+  //         "Authorization": `Bearer ${localStorage.token}`,
+  //         "content-type": "application/json"
+  //       },
+  //       body: JSON.stringify({
+  //         token: localStorage.token
+  //       })
   //     })
   //     .then(res => res.json())
-  //     .then(res => setLoggedInUser(res))
+  //     .then(res => {
+  //       console.log(res)
+  //       setLoggedInUser(res)})
   //   }
   // }, [setLoggedInUser])
 
-  console.log(loggedInUser)
+  // console.log(loggedInUser)
 
   function handleHomeClick(){
     history.push("/")
@@ -36,7 +42,8 @@ function Header({setLoggedInUser, loggedInUser, onLogin}){
       <div id='navContainer'>
         <nav>
           <NavLink to="/vinyls">Records</NavLink>
-          <NavLink to="/profile">{localStorage.name}</NavLink>
+          { loggedInUser ? <NavLink to={`/profile/${loggedInUser.user}`}>{loggedInUser.name}</NavLink> : null }
+          {/* <NavLink to={`/profile/${loggedInUser.id}`}>{loggedInUser.name}</NavLink> */}
           <NavLink to="/addVinyl">Add a Record</NavLink>
           {loggedInUser ? <Button onClick={handleLogout}>Logout</Button> : null}
         </nav>

@@ -41,7 +41,6 @@ function VinylPage({loggedInUser}){
     <div>
       <div>
         <Search searchedVinyl={searchedVinyl} onSearch={handleSearch} />
-        <Filter onProductionChange={onProductionChange} />
       </div>
       <VinylList vinylArr={searchedVinylArr} loggedInUser={loggedInUser}/>
     </div>

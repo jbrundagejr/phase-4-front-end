@@ -1,4 +1,5 @@
 import {useState, useEffect} from 'react'
+import {NavLink} from "react-router-dom"
 import {Modal, Image, Input, Rating, Form, Button, Comment, Icon} from 'semantic-ui-react'
 
 function VinylModal({id, tag, loggedInUser}){
@@ -22,7 +23,7 @@ function VinylModal({id, tag, loggedInUser}){
 
   if (!isLoaded) return <p>Loading...</p>
 
-  const {band_name, album_title, image_url, year_released, in_production} = vinyl
+  const {band_name, album_title, image_url, year_released, in_production, average_rating} = vinyl
   
   function handleDelete(id){
     fetch(`http://localhost:3000/reviews/${id}`, {
@@ -44,7 +45,8 @@ function VinylModal({id, tag, loggedInUser}){
     <Comment key={reviewObj.id}>
       <Comment.Content>
         <Comment.Author>{reviewObj.title}</Comment.Author>
-        <Comment.Author>By: {reviewObj.user.name}</Comment.Author>
+        {/* <Comment.Author>By: {reviewObj.user.name}</Comment.Author> */}
+        <Comment.Author>By: <NavLink to={`/profiles/${reviewObj.user.id}`}>{reviewObj.user.name}</NavLink></Comment.Author>
         <Comment.Text>{reviewObj.content}</Comment.Text>
         <Comment.Text>Rating: {reviewObj.rating}</Comment.Text>
         {loggedInAndMatchStatus(reviewObj) ? <Icon name="trash alternate" onClick={() => handleDelete(reviewObj.id)}></Icon> : null}
@@ -75,8 +77,10 @@ function VinylModal({id, tag, loggedInUser}){
       vinyl_id: id,
       title: userTitle,
       content: userContent,
-      rating: parseInt(userRating)
+      rating: userRating.rating
     }
+
+    // console.log(reviewData.rating)
     fetch("http://localhost:3000/reviews", {
       method: "POST",
       headers: {
@@ -102,6 +106,31 @@ function VinylModal({id, tag, loggedInUser}){
     }
   }
 
+  function averageRating(reviewArr) {
+    if (reviewArr.length !== 0) {
+      const ratings = reviewArr.map((review) => {
+        return review.rating
+      })
+      return ratings.reduce((a, b) => a + b) / ratings.length
+    } else {
+      return 0
+    }
+  }
+
+  function starRatingDecimal(rating) {
+    if (rating <= 1) {
+      return "⭐"
+  } else if (rating > 1 && rating <= 2) {
+      return "⭐⭐"
+  } else if (rating > 2 && rating <= 3) {
+      return "⭐⭐⭐"
+  } else if (rating > 3 && rating <= 4) {
+      return "⭐⭐⭐⭐"
+  } else {
+      return "⭐⭐⭐⭐⭐"
+  }
+  }
+
   return (
     <div>
       <Modal
@@ -115,8 +144,8 @@ function VinylModal({id, tag, loggedInUser}){
           <Modal.Description>
             <h3>{band_name}</h3>
             <p>Year Released: {year_released}</p>
-            <p>Still in Production? {in_production}</p>
-            <p>Average User Rating: </p>
+            <p>Still in Production? {in_production ? "Yes" : "No"}</p>
+            <p>Average User Rating: {starRatingDecimal(averageRating(reviews))} </p>
           <Comment.Group>
             <h3>Reviews</h3>
             {reviewArray}

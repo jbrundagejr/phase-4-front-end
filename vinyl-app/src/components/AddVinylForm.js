@@ -64,7 +64,7 @@ function AddVinylForm(){
         <Input className="input" id="imageURL" value={imageURL} onChange={whatUserImaged} type="url" placeholder="Album Cover URL"></Input>
         <label htmlFor="yearreleased" className="label">Year Released</label>
         <Input className="input" id="yearreleased" value={yearReleased} onChange={whatUserYearReleased} type="text" placeholder="Year Released"></Input>
-        <label htmlFor="inProduction" className="label">In Productin?</label>
+        <label htmlFor="inProduction" className="label">In Production?</label>
         <select value={inProduction} onChange={whatUserInProduction} id="inProduction" name="In-production">
           <option value={true}>Yes</option>
           <option value={false}>No</option>
