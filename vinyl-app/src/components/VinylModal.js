@@ -61,9 +61,10 @@ function VinylModal({id, tag, loggedInUser}){
 
   function loggedInAndMatchStatus(reviewObj) {
       if (loggedInUser) {
-        if (loggedInUser.user === reviewObj.user_id) {
+        if (loggedInUser.user == reviewObj.user_id) {
           return true
         } else {
+          // console.log("trigger")
           return false
         }
       } else {

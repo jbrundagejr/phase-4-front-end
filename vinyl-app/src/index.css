@@ -294,3 +294,13 @@ form.ui.reply.form {
 img.ui.medium.image.collection-card {
   width: 250px
 }
+
+#no-collection {
+  color:white;
+  font-size: 20px;
+}
+
+#no-reviews {
+  color: black;
+  font-size: 18px;
+}

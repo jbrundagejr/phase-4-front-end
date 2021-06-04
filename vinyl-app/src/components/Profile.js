@@ -20,7 +20,8 @@ function Profile({loggedInUser}){
 
   function averageRating(reviewArr) {
     let ratingsArr = reviewArr.map(review => review.rating)
-    return ratingsArr.reduce((a, b) => a + b) / ratingsArr.length
+    let avg = ratingsArr.reduce((a, b) => a + b) / ratingsArr.length
+    return avg.toFixed(2)
   }
 
   if (isLoaded) {
@@ -53,6 +54,7 @@ function Profile({loggedInUser}){
             <Card.Header><h3 id="my-reviews">My Reviews</h3></Card.Header>
             </Card.Content>
             <Card.Content>
+            {userReviewsList.length === 0 ? <p id="no-reviews">No reviews yet.</p> : null}
             {userReviewsList}
             </Card.Content>
           </Card>
@@ -61,6 +63,7 @@ function Profile({loggedInUser}){
         </div>
         <h2 id="my-collection-h2">My Collection</h2>
         <div className="profile-collection">
+          {collectionList.length === 0 ? <p id="no-collection">Review a vinyl to add it to your collection.</p> : null}
           {collectionList}
         </div>
       </>
