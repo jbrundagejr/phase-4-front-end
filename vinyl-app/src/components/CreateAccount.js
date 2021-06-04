@@ -1,4 +1,4 @@
-import {Form, Button, Modal, TextArea} from 'semantic-ui-react'
+import {Form, Button, Modal, Input} from 'semantic-ui-react'
 import { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 
@@ -29,6 +29,7 @@ function CreateAccount({onLogin}){
     .then(newUserObj => {
       localStorage.token = newUserObj.token
       onLogin(newUserObj)
+      // console.log("hello")
       history.push('/vinyls')
     })
   }
@@ -44,16 +45,16 @@ function CreateAccount({onLogin}){
             <Modal.Header>Create Account</Modal.Header>
             <Form onSubmit={e => handleSubmit(e)}>
                 <Form.Field>
-                    <TextArea placeholder="Name" required value={name} onChange={e => setName(e.target.value)}/>
+                    <Input placeholder="Name" required value={name} onChange={e => setName(e.target.value)}/>
                 </Form.Field>
                 <Form.Field>
-                    <TextArea placeholder="Password" required  value={password} onChange={e => setPassword(e.target.value)}/>
+                    <Input placeholder="Password" required type="password"  value={password} onChange={e => setPassword(e.target.value)}/>
                 </Form.Field>
                 <Form.Field>
-                    <TextArea placeholder="Email" required value={email} onChange={e => setEmail(e.target.value)}/>
+                    <Input placeholder="Email" required type = "email"  value={email} onChange={e => setEmail(e.target.value)}/>
                 </Form.Field>
                 <Form.Field>
-                    <TextArea placeholder="Profile Picture" required type="url" value={imgUrl} onChange={e => setImgUrl(e.target.value)}/>
+                    <Input placeholder="Profile Picture" required type="url" value={imgUrl} onChange={e => setImgUrl(e.target.value)}/>
                 </Form.Field>
                 <Button type='submit'>Submit</Button>
             </Form>

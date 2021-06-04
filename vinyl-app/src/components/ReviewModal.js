@@ -2,7 +2,7 @@ import {Modal, Image} from 'semantic-ui-react'
 import {useState} from 'react'
 
 function ReviewModal({review, starRating}) {
-    const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false)
 
   return (
     <div>

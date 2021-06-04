@@ -3,7 +3,7 @@ import { useParams, NavLink } from "react-router-dom"
 import {Card, Icon} from 'semantic-ui-react'
 import ReviewCard from './ReviewCard'
 
-function Profile(){
+function Profile({loggedInUser}){
   const [userData, setUserData] = useState({})
   const [isLoaded, setIsLoaded] = useState(false)
   const params = useParams()
@@ -40,13 +40,13 @@ function Profile(){
         <div className="user-reviews-list">
         <Card>
           <Card.Content>
-          <Card.Header>My Reviews</Card.Header>
+          <Card.Header><h3 id="my-reviews">My Reviews</h3></Card.Header>
           </Card.Content>
           <Card.Content>
           {userReviewsList}
           </Card.Content>
         </Card>
-        <NavLink to="/addVinyl">Add a Record</NavLink>
+        {loggedInUser ? <NavLink to="/addVinyl">Add a Record</NavLink> : null }
         </div>
       </div>
     )

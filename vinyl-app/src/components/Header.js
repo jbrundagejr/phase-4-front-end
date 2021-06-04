@@ -5,7 +5,11 @@ function Header({setLoggedInUser, loggedInUser, onLogin}){
   const history = useHistory()
   
   function handleHomeClick(){
+    if (loggedInUser) {
+      history.push("/vinyls")
+    } else {
     history.push("/")
+    }
   }
 
   function handleLogout(){
@@ -18,8 +22,8 @@ function Header({setLoggedInUser, loggedInUser, onLogin}){
       
       <div id='navContainer'>
         <div id="logoHeaderContainer">
-          <img id="logo" src="https://i.imgur.com/BJfncxA.png" alt="logo"></img>
-          <h1 onClick={handleHomeClick}>vinylboxd</h1>
+          <img id="logo" src="https://i.imgur.com/BJfncxA.png" alt="logo" />
+          <h1 onClick={handleHomeClick} id="vinylboxd">vinylboxd</h1>
         </div>
         <nav>
           <NavLink to="/vinyls">Records</NavLink>

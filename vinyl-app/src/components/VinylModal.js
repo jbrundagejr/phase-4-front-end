@@ -46,7 +46,7 @@ function VinylModal({id, tag, loggedInUser}){
       <Comment.Content>
         <Comment.Author><h4>{reviewObj.title}</h4></Comment.Author>
         {/* <Comment.Author>By: {reviewObj.user.name}</Comment.Author> */}
-        <Comment.Author><p id="commentAuthor">By: <NavLink to={`/profiles/${reviewObj.user.id}`}>{reviewObj.user.name}</NavLink></p></Comment.Author>
+        <Comment.Author><p id="commentAuthor">By: <NavLink to={`/profile/${reviewObj.user.id}`}>{reviewObj.user.name}</NavLink></p></Comment.Author>
         <Comment.Text><p>{reviewObj.content}</p></Comment.Text>
         <Comment.Text><p>Rating: {reviewObj.rating}</p></Comment.Text>
         {loggedInAndMatchStatus(reviewObj) ? <Icon name="trash alternate" onClick={() => handleDelete(reviewObj.id)}></Icon> : null}
@@ -118,7 +118,9 @@ function VinylModal({id, tag, loggedInUser}){
   }
 
   function starRatingDecimal(rating) {
-    if (rating <= 1) {
+    if (rating === 0) {
+      return "N/A"
+  } else if (rating === 1) {
       return "⭐"
   } else if (rating > 1 && rating <= 2) {
       return "⭐⭐"
@@ -135,9 +137,9 @@ function VinylModal({id, tag, loggedInUser}){
     if (loggedInUser) {
       return (
           <div>
-            <h4 className="rate-title">Review this album</h4>
+            <h3 className="rate-title">Review this album</h3>
             <Form onSubmit={handleReviewSubmit} reply>
-            <Input value={userTitle} placeholder="Your Title" onChange={e => setUserTitle(e.target.value)}/>
+            <Input value={userTitle} placeholder="Your Title" id="review-title-input"onChange={e => setUserTitle(e.target.value)}/>
             <TextArea value={userContent} placeholder="Your Review" onChange={e => setUserContent(e.target.value)}/>
             <Rating onRate={rateAlbum} value={userRating} maxRating={5} clearable/>
             <br/>

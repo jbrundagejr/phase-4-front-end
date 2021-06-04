@@ -7,7 +7,7 @@ function AddVinylForm(){
   const [albumTitle, setAlbumTitle] = useState("")
   const [imageURL, setImageURL] = useState("")
   const [yearReleased, setYearReleased] = useState("")
-  const [inProduction, setInProduction] = useState("")
+  const [inProduction, setInProduction] = useState(true)
   const history = useHistory()
 
   function whatUserNamedBand(e){
@@ -51,11 +51,11 @@ function AddVinylForm(){
         history.push("/vinyls")
       })
   }
-
+  // console.log(inProduction)
   return (
     <div>
       <div id="vinylFormHeader">
-      <h2>Add Vinyl Form </h2>
+      <h2>Add Vinyl Form</h2>
       </div>
       <form className="form" onSubmit={handleSubmit}>
         <label htmlFor="bandname" className="label">Band Name</label>

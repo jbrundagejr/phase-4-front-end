@@ -207,7 +207,7 @@ p span {
 }
 
 .ui.feed>.event>.label img {
-  border-radius: none;
+  border-radius: 0px;
 }
 
 .ui.feed>.event>.label img:hover {
@@ -244,4 +244,23 @@ label.label {
 select#inProduction {
   width: 50px;
   margin-bottom: 10px;
+}
+
+button#create-account.ui.button.modal-button {
+  align-self: center;
+  width: 150px;
+  /* margin-left: 46%;
+  margin-right: -46% */
+}
+
+#vinylboxd {
+  margin-top: 0px;
+}
+
+#my-reviews {
+  font-size: 20px;
+}
+
+form.ui.reply.form {
+  padding: 0px
 }
