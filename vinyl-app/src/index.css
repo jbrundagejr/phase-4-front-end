@@ -49,8 +49,9 @@ h4 {
 }
 
 #logo{
-  padding-top: 20px;
-  height: 75px;
+  margin-top: 0;
+  /* padding-top: 20px; */
+  height: 90px;
   width: auto;
 }
 
@@ -81,8 +82,12 @@ a:hover {
 #logoHeaderContainer {
   display: flex;
   flex-direction: row;
-  align-items: baseline;
+  align-items: center;
   line-height: 5em;
+}
+
+h1#vinylboxd {
+  margin-top: 2px;
 }
 
 #navContainer {
@@ -254,7 +259,7 @@ button#create-account.ui.button.modal-button {
 }
 
 #vinylboxd {
-  margin-top: 0px;
+  padding-bottom: 10px;
 }
 
 #my-reviews {
@@ -263,4 +268,8 @@ button#create-account.ui.button.modal-button {
 
 form.ui.reply.form {
   padding: 0px
+}
+
+#review-modal-title {
+  color: black;
 }

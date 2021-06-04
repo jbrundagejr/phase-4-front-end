@@ -4,6 +4,8 @@ import {useState} from 'react'
 function ReviewModal({review, starRating}) {
   const [open, setOpen] = useState(false)
 
+  console.log(review)
+
   return (
     <div>
       <Modal
@@ -11,7 +13,7 @@ function ReviewModal({review, starRating}) {
             onOpen={() => setOpen(true)}
             open={open}
             trigger={<p id="reviewModalTitle">{review.title}</p>}>
-            <Modal.Header>{review.reviewed_vinyl.band_name} - {review.reviewed_vinyl.album_title}</Modal.Header>
+            <Modal.Header><h3 id="review-modal-title">{review.reviewed_vinyl.band_name} - {review.reviewed_vinyl.album_title}</h3></Modal.Header>
             <Modal.Content image>
             <Image size='medium' src={review.reviewed_vinyl.image_url} wrapped />
             <Modal.Description>
