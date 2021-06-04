@@ -25,7 +25,7 @@ function App() {
       setLoggedInUser(user)
     }
   }, [])
-  console.log(loggedInUser)
+  // console.log(loggedInUser)
   return (
     <div >
      <Header onLogin={onLogin} setLoggedInUser={setLoggedInUser} loggedInUser={loggedInUser}/>

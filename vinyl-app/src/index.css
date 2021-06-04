@@ -190,6 +190,7 @@ p span {
   flex-direction: row;
   align-items: center;
   margin: 0 20%;
+  margin-bottom: 30px;
 }
 
 .profile-page p {
@@ -272,4 +273,24 @@ form.ui.reply.form {
 
 #review-modal-title {
   color: black;
+}
+
+#my-collection-h2 {
+  margin: 0 20%;
+}
+
+.profile-collection {
+  margin: 0 20%;
+  display: flex;
+  /* justify-content: center; */
+  flex-direction: row;
+  padding-bottom: 60px;
+}
+
+.collection-card {
+  margin: 5px
+}
+
+img.ui.medium.image.collection-card {
+  width: 250px
 }

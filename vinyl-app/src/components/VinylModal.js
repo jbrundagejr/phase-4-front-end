@@ -101,8 +101,10 @@ function VinylModal({id, tag, loggedInUser}){
   function checkTag(tag) {
     if (tag === "review") {
       return <Image size="small" src={image_url} alt={album_title}/>
-    } else {
+    } else if (tag === "vinyl-card") {
       return <Card><Image src={image_url} alt={band_name} wrapped ui={false} /></Card>
+    } else if (tag === "collection") {
+      return <Image className="collection-card" size="medium" src={image_url} alt={album_title}/>
     }
   }
 
@@ -134,7 +136,7 @@ function VinylModal({id, tag, loggedInUser}){
   }
 
   function isUserLoggedIn(){
-    if (loggedInUser) {
+    if (loggedInUser && tag !== "collection") {
       return (
           <div>
             <h3 className="rate-title">Review this album</h3>
