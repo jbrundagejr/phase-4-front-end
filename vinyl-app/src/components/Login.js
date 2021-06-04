@@ -18,7 +18,7 @@ function Login({ toggleLogIn, onLogin }){
 
   function handleClick(e){
     e.preventDefault()
-    fetch("http://localhost:3000/login", {
+    fetch("https://peaceful-hollows-67278.herokuapp.com/login", {
       method: "POST",
       headers:{
         "Content-Type": "application/json"
@@ -27,12 +27,9 @@ function Login({ toggleLogIn, onLogin }){
     })
      .then(res => res.json())
      .then(userInfo => {
-      // console.log(userInfo)
-      // localStorage.token = userInfo.token
       localStorage.setItem('name', userInfo.name)
       localStorage.setItem('user', userInfo.user)
       localStorage.setItem('token', userInfo.token)
-      // debugger
       onLogin(userInfo)
       history.push('/vinyls')
      }

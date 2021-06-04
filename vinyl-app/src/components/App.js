@@ -18,14 +18,13 @@ function App() {
   useEffect(() => {
     const loggedInUser = localStorage.getItem("user")
     if (loggedInUser) {
-      // const foundUser = JSON.parse(loggedInUser)
       const user = {name: localStorage.getItem("name"),
                     user: localStorage.getItem("user"),
                     token: localStorage.getItem("token")}
       setLoggedInUser(user)
     }
   }, [])
-  // console.log(loggedInUser)
+ 
   return (
     <div >
      <Header onLogin={onLogin} setLoggedInUser={setLoggedInUser} loggedInUser={loggedInUser}/>

@@ -27,16 +27,10 @@ function ReviewCard({review}){
             <Feed.Summary>
               <ReviewModal review={review} starRating={starRating}/>
               <p id="reviewCardStars">{starRating(review.rating)}</p>
-              {/* <VinylModal id={review.vinyl_id} tag="review"/> */}
             </Feed.Summary>
           </Feed.Content>
         </Feed.Event>
         </Feed>
-      // {/* <img src= style={{height: "150px"}}/>
-      //     <h2>{review.reviewed_vinyl.album_title}</h2>
-      //     <h3>{review.reviewed_vinyl.band_name}</h3>
-      //     <p>{review.rating}/5</p>
-      //     <p>{review.content}</p> */}
   )
 }
 

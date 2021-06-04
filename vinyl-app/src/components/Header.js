@@ -1,7 +1,7 @@
 import {NavLink} from "react-router-dom"
 import {useHistory} from "react-router-dom"
 
-function Header({setLoggedInUser, loggedInUser, onLogin}){
+function Header({loggedInUser, onLogin}){
   const history = useHistory()
   
   function handleHomeClick(){
@@ -28,7 +28,6 @@ function Header({setLoggedInUser, loggedInUser, onLogin}){
         <nav>
           <NavLink to="/vinyls">Records</NavLink>
           { loggedInUser ? <NavLink to={`/profile/${loggedInUser.user}`}>{loggedInUser.name}</NavLink> : null }
-          {/* <NavLink to={`/profile/${loggedInUser.id}`}>{loggedInUser.name}</NavLink> */}
           {loggedInUser ? <NavLink to="/" onClick={handleLogout}>Logout</NavLink> : <NavLink to="/">Login</NavLink>}
         </nav>
       </div>

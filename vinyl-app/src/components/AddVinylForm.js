@@ -39,7 +39,7 @@ function AddVinylForm(){
       year_released: yearReleased,
       in_production: inProduction
     }
-    fetch('http://localhost:3000/vinyls', {
+    fetch('https://peaceful-hollows-67278.herokuapp.com/vinyls', {
       method: "POST",
       headers: {
         "content-type": "application/json"
@@ -51,7 +51,7 @@ function AddVinylForm(){
         history.push("/vinyls")
       })
   }
-  // console.log(inProduction)
+  
   return (
     <div>
       <div id="vinylFormHeader">

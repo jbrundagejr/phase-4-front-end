@@ -10,7 +10,7 @@ function Profile({loggedInUser}){
   const params = useParams()
 
   useEffect(() => {
-    fetch(`http://localhost:3000/users/${params.id}`)
+    fetch(`https://peaceful-hollows-67278.herokuapp.com/users/${params.id}`)
         .then(resp => resp.json())
         .then(function(serverUserInfo) {
             setUserData(serverUserInfo)

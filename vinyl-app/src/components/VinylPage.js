@@ -7,7 +7,7 @@ function VinylPage({loggedInUser}){
   const [searchedVinyl, setSearchedVinyl] = useState("")
 
   useEffect(() => {
-    fetch('http://localhost:3000/vinyls')
+    fetch('https://peaceful-hollows-67278.herokuapp.com/vinyls')
       .then(res => res.json())
       .then(vinylData => setVinylArr(vinylData))
   }, [])

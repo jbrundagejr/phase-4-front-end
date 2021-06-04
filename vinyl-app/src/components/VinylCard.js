@@ -7,7 +7,6 @@ function VinylCard({vinyl, loggedInUser}){
   return (
     <div className="card-div">
       <Card>
-
         <VinylModal id={id} tag="vinyl-card" loggedInUser={loggedInUser}/>
         <Card.Content>
           <Card.Header> <h3 className="card-content">{album_title}</h3></Card.Header>

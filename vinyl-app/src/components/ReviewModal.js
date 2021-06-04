@@ -4,8 +4,6 @@ import {useState} from 'react'
 function ReviewModal({review, starRating}) {
   const [open, setOpen] = useState(false)
 
-  // console.log(review)
-
   return (
     <div>
       <Modal

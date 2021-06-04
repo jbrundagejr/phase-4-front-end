@@ -6,9 +6,6 @@ function VinylList({vinylArr, loggedInUser}){
 
   return(
     <div >
-      {/* <div>
-        <h2>Vinyl Collection</h2>
-      </div> */}
       <div class="ui link four cards" id="card-collection">
         {vinylArray.length > 0 ? vinylArray : 
           <p>Don't seem to have that one. Maybe add it to the collection?</p>}

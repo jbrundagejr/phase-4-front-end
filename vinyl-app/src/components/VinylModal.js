@@ -12,7 +12,7 @@ function VinylModal({id, tag, loggedInUser}){
   const [reviews, setReviews] = useState([])
 
   useEffect(() => {
-    fetch(`http://localhost:3000/vinyls/${id}`)
+    fetch(`https://peaceful-hollows-67278.herokuapp.com/vinyls/${id}`)
       .then(res => res.json())
       .then(vinylData => {
         setVinyl(vinylData)
@@ -26,7 +26,7 @@ function VinylModal({id, tag, loggedInUser}){
   const {band_name, album_title, image_url, year_released, in_production} = vinyl
   
   function handleDelete(id){
-    fetch(`http://localhost:3000/reviews/${id}`, {
+    fetch(`https://peaceful-hollows-67278.herokuapp.com/reviews/${id}`, {
       method: "DELETE",
       headers: {
         "Authorization": `Bearer ${localStorage.token}`,
@@ -45,12 +45,10 @@ function VinylModal({id, tag, loggedInUser}){
     <Comment key={reviewObj.id}>
       <Comment.Content>
         <Comment.Author><h4>{reviewObj.title}</h4></Comment.Author>
-        {/* <Comment.Author>By: {reviewObj.user.name}</Comment.Author> */}
         <Comment.Author><p id="commentAuthor">By: <NavLink to={`/profile/${reviewObj.user.id}`}>{reviewObj.user.name}</NavLink></p></Comment.Author>
         <Comment.Text><p>{reviewObj.content}</p></Comment.Text>
         <Comment.Text><p>Rating: {reviewObj.rating}</p></Comment.Text>
         {loggedInAndMatchStatus(reviewObj) ? <Icon name="trash alternate" onClick={() => handleDelete(reviewObj.id)}></Icon> : null}
-        {/* {loggedInUser.user === reviewObj.user_id ? <Icon name="trash alternate" onClick={() => handleDelete(reviewObj.id)}></Icon> : null} */}
       </Comment.Content>
     </Comment>
   )
@@ -64,7 +62,6 @@ function VinylModal({id, tag, loggedInUser}){
         if (loggedInUser.user == reviewObj.user_id) {
           return true
         } else {
-          // console.log("trigger")
           return false
         }
       } else {
@@ -81,8 +78,7 @@ function VinylModal({id, tag, loggedInUser}){
       rating: userRating.rating
     }
 
-    // console.log(reviewData.rating)
-    fetch("http://localhost:3000/reviews", {
+    fetch("https://peaceful-hollows-67278.herokuapp.com/reviews", {
       method: "POST",
       headers: {
         "Authorization": `Bearer ${localStorage.token}`,
