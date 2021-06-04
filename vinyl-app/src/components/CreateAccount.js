@@ -27,7 +27,10 @@ function CreateAccount({onLogin}){
     })
     .then(resp => resp.json())
     .then(newUserObj => {
-      localStorage.token = newUserObj.token
+      // localStorage.token = newUserObj.token
+      localStorage.setItem('name', newUserObj.name)
+      localStorage.setItem('user', newUserObj.user)
+      localStorage.setItem('token', newUserObj.token)
       onLogin(newUserObj)
       // console.log("hello")
       history.push('/vinyls')
