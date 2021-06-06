@@ -3,7 +3,7 @@ import {Input, Button} from 'semantic-ui-react'
 import {useHistory} from 'react-router-dom'
 import CreateAccount from './CreateAccount'
 
-function Login({ toggleLogIn, onLogin }){
+function Login({ onLogin }){
   const [userName, setUserName] = useState("")
   const [userPassword, setUserPassword] = useState("")
   const history = useHistory()
